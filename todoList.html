@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TO-Do-List</title>
+    <style>
+      section {
+        margin-left: 25%;
+        width: 300px;
+      }
+      .box {
+        padding: 20px;
+        height: 100px;
+        border: 2px solid black;
+        border-radius: 20px;
+      }
+      .list-item {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="box">
+        <h2>To Do List</h2>
+        <label>
+          <input type="text" placeholder="Add an Item" id="newItem" />
+        </label>
+        <button onclick="addItem()">Submit</button>
+      </div>
+      <div class="list">
+        <ul id="itemList">
+          <li class="list-item">
+            Heloo
+            <button id="delete" onclick="deleteItem(this)">DEL</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <script>
+      // handle Add
+
+      function addItem() {
+        var newItemText = document.getElementById("newItem").value;
+
+        var listItem = document.createElement("li");
+        listItem.className = "list-item";
+        listItem.appendChild(document.createTextNode(newItemText));
+
+        var deleteButton = document.createElement("button");
+        deleteButton.className = "delete";
+        deleteButton.appendChild(document.createTextNode("DEL"));
+
+        deleteButton.onclick = function () {
+          listItem.remove();
+        };
+        listItem.appendChild(deleteButton);
+        document.getElementById("itemList").appendChild(listItem);
+
+        document.getElementById("newItem").value = "";
+      }
+
+      //   handle Delete
+
+      function deleteItem(button) {
+        // Remove the parent list item when the delete button is clicked
+        button.parentNode.remove();
+      }
+    </script>
+  </body>
+</html>
